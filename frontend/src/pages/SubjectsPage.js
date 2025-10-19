@@ -108,6 +108,9 @@ const SubjectsPage = () => {
           <DialogContent data-testid="add-study-dialog">
             <DialogHeader>
               <DialogTitle>Soru Çözme Kaydı Ekle</DialogTitle>
+              <DialogDescription>
+                Çözdüğünüz soruları ve performansınızı kaydedin
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 mt-4">
               <div>
