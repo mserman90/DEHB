@@ -152,6 +152,9 @@ const TasksPage = () => {
           <DialogContent data-testid="add-task-dialog">
             <DialogHeader>
               <DialogTitle>Yeni Görev Oluştur</DialogTitle>
+              <DialogDescription>
+                Çalışma programınız için yeni bir görev ekleyin
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 mt-4">
               <div>
