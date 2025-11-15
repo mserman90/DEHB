@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Clock, Target, Trophy, Flame, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
+import GamificationWidget from "@/components/GamificationWidget";
+import FocusAudio from "@/components/FocusAudio";
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
@@ -87,6 +89,11 @@ const Dashboard = () => {
         </p>
       </div>
 
+      {/* Gamification Widget */}
+      <div className="mb-6">
+        <GamificationWidget />
+      </div>
+
       {/* Streak Card */}
       {stats?.current_streak > 0 && (
         <Card className="mb-6 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0" data-testid="streak-card">
@@ -121,8 +128,13 @@ const Dashboard = () => {
         })}
       </div>
 
+      {/* Focus Audio Widget */}
+      <div className="mb-8">
+        <FocusAudio />
+      </div>
+
       {/* Achievements */}
-      <Card data-testid="achievements-section">
+      <Card className="mb-8" data-testid="achievements-section">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Trophy className="w-6 h-6 text-yellow-500" />
@@ -142,7 +154,7 @@ const Dashboard = () => {
                   data-testid={`achievement-${achievement.badge_type}`}
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-2xl">
-                    🏆
+                    {achievement.icon}
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800">{achievement.title}</h4>
@@ -156,7 +168,7 @@ const Dashboard = () => {
       </Card>
 
       {/* Quick Actions */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Button
           size="lg"
           className="h-20 text-lg bg-teal-600 hover:bg-teal-700"
