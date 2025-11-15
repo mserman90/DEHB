@@ -73,32 +73,44 @@ const PomodoroPage = () => {
     }
 
     if (sessionType === "work") {
-      // Save work session
-      try {
-        const today = new Date().toISOString().split('T')[0];
-        await axios.post(`${API}/pomodoro`, {
-          duration_minutes: 25,
-          session_type: "work",
-          subject: selectedSubject || null,
-          date: today
-        });
-        
-        toast.success("🎉 Harika! 25 dakikalık çalışma tamamlandı!");
-        fetchStats();
-        
-        // Start break
-        setSessionType("break");
-        setTimeLeft(5 * 60);
-        toast.info("☕ 5 dakika mola zamanı!");
-      } catch (error) {
-        console.error("Error saving pomodoro session:", error);
-        toast.error("Seans kaydedilemedi");
-      }
+      // Store session data and show mood modal
+      const today = new Date().toISOString().split('T')[0];
+      setCompletedSessionData({
+        duration_minutes: 25,
+        session_type: "work",
+        subject: selectedSubject || null,
+        date: today
+      });
+      setShowMoodModal(true);
+      
+      toast.success("🎉 Harika! 25 dakikalık çalışma tamamlandı!");
     } else {
       // Break completed
       toast.success("Mola tamamlandı! Tekrar çalışmaya hazır mısın?");
       setSessionType("work");
       setTimeLeft(25 * 60);
+    }
+  };
+
+  const handleMoodSelect = async (mood) => {
+    setShowMoodModal(false);
+    
+    // Save work session with mood
+    try {
+      await axios.post(`${API}/pomodoro`, {
+        ...completedSessionData,
+        mood_after: mood
+      });
+      
+      fetchStats();
+      
+      // Start break
+      setSessionType("break");
+      setTimeLeft(5 * 60);
+      toast.info("☕ 5 dakika mola zamanı!");
+    } catch (error) {
+      console.error("Error saving pomodoro session:", error);
+      toast.error("Seans kaydedilemedi");
     }
   };
 
