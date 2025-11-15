@@ -67,7 +67,8 @@ const TasksPage = () => {
         description: "",
         priority: "medium",
         date: new Date().toISOString().split('T')[0],
-        duration_minutes: 25
+        duration_minutes: 25,
+        subtasks: []
       });
       fetchTasks();
     } catch (error) {
