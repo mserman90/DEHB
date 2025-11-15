@@ -147,6 +147,13 @@ const PomodoroPage = () => {
         Pomodoro Timer
       </h1>
 
+      {/* Mood Modal */}
+      <MoodModal 
+        isOpen={showMoodModal} 
+        onClose={() => setShowMoodModal(false)}
+        onSelectMood={handleMoodSelect}
+      />
+
       {/* Timer Card */}
       <Card className="mb-8 overflow-hidden" data-testid="pomodoro-timer-card">
         <div className={`h-2 transition-all ${
