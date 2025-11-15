@@ -14,6 +14,8 @@ const PomodoroPage = () => {
   const [sessionType, setSessionType] = useState("work"); // work or break
   const [selectedSubject, setSelectedSubject] = useState("");
   const [stats, setStats] = useState({ total_sessions: 0, total_work_minutes: 0 });
+  const [showMoodModal, setShowMoodModal] = useState(false);
+  const [completedSessionData, setCompletedSessionData] = useState(null);
   const intervalRef = useRef(null);
   const audioRef = useRef(null);
 
