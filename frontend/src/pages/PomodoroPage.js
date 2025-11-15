@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Play, Pause, RotateCcw, Coffee } from "lucide-react";
 import { toast } from "sonner";
+import MoodModal from "@/components/MoodModal";
 
 const PomodoroPage = () => {
   const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes in seconds
